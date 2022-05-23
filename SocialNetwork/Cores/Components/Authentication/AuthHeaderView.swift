@@ -7,14 +7,33 @@
 
 import SwiftUI
 
-struct AuthenticationHeaderView: View {
+struct AuthHeaderView: View {
+    let title1: String
+    let title2: String
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .leading) {
+            HStack { Spacer() }
+            
+            Text(title1)
+                .font(.largeTitle)
+                .fontWeight(.semibold)
+            
+            Text(title2)
+                .font(.largeTitle)
+                .fontWeight(.semibold)
+        }
+        //.frame(width: UIScreen.main.bounds.width, height: 260)
+        .frame(height: 260)
+        .padding(.leading)
+        .background(Color(.systemBlue))
+        .foregroundColor(.white)
+        .clipShape(RoundedShape(corners: [.bottomRight]))
     }
 }
 
-struct AuthenticationHeaderView_Previews: PreviewProvider {
+struct AuthHeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        AuthenticationHeaderView()
+        AuthHeaderView(title1: "Xin chào", title2: "Bạn đã trở lại")
     }
 }

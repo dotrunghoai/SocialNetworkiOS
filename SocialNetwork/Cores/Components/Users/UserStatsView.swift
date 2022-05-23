@@ -9,7 +9,27 @@ import SwiftUI
 
 struct UserStatsView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack(spacing: 24) {
+            HStack(spacing: 4) {
+                Text("809")
+                    .font(.subheadline)
+                    .bold()
+                
+                Text("Đang theo dõi")
+                    .font(.caption)
+                    .foregroundColor(.gray)
+            }
+            
+            HStack {
+                Text("1.2Tr")
+                    .font(.subheadline)
+                    .bold()
+                
+                Text("Người theo dõi")
+                    .font(.caption)
+                    .foregroundColor(.gray)
+            }
+        }
     }
 }
 

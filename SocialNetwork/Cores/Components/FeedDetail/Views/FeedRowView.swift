@@ -9,11 +9,16 @@ import SwiftUI
 import Kingfisher
 
 struct FeedRowView: View {
-    let post: Post
+    @ObservedObject var viewModel: FeedRowViewModel
+    
+    init(post: Post) {
+        self.viewModel = FeedRowViewModel(post: post)
+    }
+//    let post: Post
     
     var body: some View {
         VStack(alignment: .leading) {
-            if let user = post.user {
+            if let user = viewModel.post.user {
                 HStack(alignment: .top, spacing: 12, content: {
                     KFImage(URL(string: user.profileImageUrl))
                         .resizable()
@@ -39,7 +44,7 @@ struct FeedRowView: View {
                                 .font(.caption)
                         }
                         
-                        Text(post.caption)
+                        Text(viewModel.post.caption)
                             .font(.subheadline)
                             .multilineTextAlignment(.leading)
                     }
@@ -66,10 +71,13 @@ struct FeedRowView: View {
                 Spacer()
             
                 Button(action: {
-                    
+                    viewModel.post.didLike ?? false ?
+                        viewModel.unlikePost() :
+                        viewModel.likePost()
                 }, label: {
-                    Image(systemName: "heart")
+                    Image(systemName: viewModel.post.didLike ?? false ? "heart.fill" : "heart")
                         .font(.subheadline)
+                        .foregroundColor(viewModel.post.didLike ?? false ? .red : .gray)
                 })
             
                 Spacer()
